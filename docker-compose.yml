@@ -1,0 +1,9 @@
+version: '3.7'
+services:
+  php:
+    build:
+      context: ./docker/php-fpm
+    volumes:
+      - ./:/var/www/symfony:cached
+    #      Mac only:
+    #      - app-sync:/var/www/symfony:cached
