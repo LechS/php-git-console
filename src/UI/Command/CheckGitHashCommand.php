@@ -22,17 +22,13 @@ class CheckGitHashCommand extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $command = 'git ls-remote git://github.com/LechS/php-git-console.git master';
-
-        $result = exec($command);
-
-
         $process = new Process(
             ['git','ls-remote', 'git://github.com/LechS/php-git-console.git', 'master']);
         $process->run();
 
         if(!$process->isSuccessful()) {
             $output->write($process->getErrorOutput());
+            return 1;
         }
 
         $output->write($process->getOutput());
