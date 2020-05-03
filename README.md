@@ -6,8 +6,8 @@ Na potrzeby realizacji zadania przyjęto, że aplikacja ma sprawdzać sha w publ
 ## PROJECT setup
 ```
 git clone git@github.com:LechS/php-git-console.git
-docker-compose up -d
 cd php-git-console
+docker-compose up -d
 ```
 
 ## USAGE
