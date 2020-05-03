@@ -7,10 +7,10 @@ namespace App\Tests\Core\Doubles\ShellProcess;
 use App\Shared\ShellProcess\ShellProcessFactoryInterface;
 use App\Shared\ShellProcess\ShellProcessInterface;
 
-class ShellValidProcessFactoryStub implements ShellProcessFactoryInterface
+class NoRepositoryProcessFactoryStub implements ShellProcessFactoryInterface
 {
     public function create(array $command): ShellProcessInterface
     {
-        return new ShellValidProcessMock($command);
+        return new NoRepositoryProcessStub();
     }
 }

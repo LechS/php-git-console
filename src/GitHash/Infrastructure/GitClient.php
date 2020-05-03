@@ -47,7 +47,7 @@ class GitClient implements GitClientInterface
     private function validate(ShellProcessInterface $process, GitHashRequest $gitHashRequest): void
     {
         if (!$process->isSuccessful() && false !== strpos($process->getErrorOutput(), 'Repository not found')) {
-            throw new GitClientException('Repository not found');
+            throw new GitClientException('Repository: '.$gitHashRequest->getRepository().' not found');
         }
 
         if (!$process->isSuccessful()) {
