@@ -4,11 +4,11 @@
 Na potrzeby realizacji zadania przyjęto, że aplikacja ma sprawdzać sha w publicznych repozytoriach serwisów takich jak Github.
 
 ## PROJECT setup
-``
+```
 git clone git@github.com:LechS/php-git-console.git
 docker-compose up -d
 cd php-git-console
-``
+```
 
 ## USAGE
 
