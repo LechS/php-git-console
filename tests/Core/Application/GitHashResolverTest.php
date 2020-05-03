@@ -29,7 +29,6 @@ class GitHashResolverTest extends KernelTestCase
             new GitValidClientStub(),
             $container->get('test.'.GitServices::class)
         );
-
     }
 
     public function testValidService(): void
@@ -40,7 +39,6 @@ class GitHashResolverTest extends KernelTestCase
         self::assertEquals(GitValidClientStub::HASH, $hash);
     }
 
-
     public function testInValidService(): void
     {
         $this->expectException(GitServiceNotFoundException::class);
@@ -48,5 +46,4 @@ class GitHashResolverTest extends KernelTestCase
 
         $this->hashResolver->getGitHash(self::REPOSITORY, self::BRANCH, 'invalidService');
     }
-
 }
