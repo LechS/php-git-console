@@ -6,19 +6,24 @@ namespace App\GitHash\Infrastructure;
 
 use App\GitHash\Domain\GitClientException;
 use App\GitHash\Domain\GitClientInterface;
+use App\GitHash\Domain\GitHash;
+use App\GitHash\Domain\GitHashRequest;
 use Symfony\Component\Process\Process;
 
 class GitClient implements GitClientInterface
 {
     const SHELL_RESPONSE_SEPERATOR = '	';
 
-    public function getBranchHash(string $domain, string $repository, string $branch): string
+    /**
+     * {@inheritdoc}
+     */
+    public function getBranchHash(GitHashRequest $gitHashRequest): GitHash
     {
         $process = new Process([
             'git',
             'ls-remote',
-            'git://'.$domain.'/'.$repository.'git',
-            $branch,
+            'git://'.$gitHashRequest->getDomain().'/'.$gitHashRequest->getRepository().'git',
+            $gitHashRequest->getBranch(),
         ]);
         $process->run();
 
@@ -26,7 +31,10 @@ class GitClient implements GitClientInterface
             throw new GitClientException($this->parseErrorResponse($process->getErrorOutput()));
         }
 
-        return $this->parseHashResponse($process->getOutput());
+        return new GitHash(
+                    $this->parseHashResponse($process->getOutput()),
+                    $gitHashRequest->getBranch()
+                );
     }
 
     private function parseHashResponse(string $response): string

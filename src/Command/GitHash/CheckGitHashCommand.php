@@ -4,8 +4,11 @@ declare(strict_types=1);
 
 namespace App\Command\GitHash;
 
+use App\GitHash\Domain\GitHashResolverInterface;
 use Symfony\Component\Console\Command\Command;
+use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
+use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Process\Process;
 
@@ -13,24 +16,32 @@ class CheckGitHashCommand extends Command
 {
     protected static $defaultName = 'app:check-git-hash';
 
+    protected GitHashResolverInterface $hashResolver;
+
+    public function __construct(GitHashResolverInterface $hashResolver)
+    {
+        parent::__construct();
+
+        $this->hashResolver = $hashResolver;
+    }
+
+
     protected function configure(): void
     {
-        // ...
+        $this->addArgument('repository', InputArgument::REQUIRED, 'Repository in format \' user\\repository \' ',);
+        $this->addArgument('branch', InputArgument::REQUIRED, 'Branch name',);
+        $this->addOption('service', 's', InputOption::VALUE_REQUIRED, '', 'github');
     }
 
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        $process = new Process(
-            ['git', 'ls-remote', 'git://github.com/LechS/php-git-console.git', 'master']);
-        $process->run();
+        $repository = $input->getArgument('repository');
+        $branch = $input->getArgument('branch');
+        $service = $input->getOption('service');
 
-        if (!$process->isSuccessful()) {
-            $output->write($process->getErrorOutput());
+        $hash = $this->hashResolver->getGitHash($repository, $branch, $service);
 
-            return 1;
-        }
-        $output->write($process->getCommandLine());
-        $output->write(PHP_EOL);
+        $output->writeln($hash);
 
         return 0;
     }

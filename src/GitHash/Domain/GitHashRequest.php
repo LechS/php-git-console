@@ -6,17 +6,22 @@ namespace App\GitHash\Domain;
 
 class GitHashRequest
 {
+    protected string $domain;
+
     protected string $repository;
 
     protected string $branch;
 
-    protected string $service;
-
-    public function __construct(string $repository, string $branch, string $service)
+    public function __construct(string $domain, string $repository, string $branch)
     {
+        $this->domain = $domain;
         $this->repository = $repository;
         $this->branch = $branch;
-        $this->service = $service;
+    }
+
+    public function getDomain(): string
+    {
+        return $this->domain;
     }
 
     public function getRepository(): string
@@ -27,10 +32,5 @@ class GitHashRequest
     public function getBranch(): string
     {
         return $this->branch;
-    }
-
-    public function getService(): string
-    {
-        return $this->service;
     }
 }

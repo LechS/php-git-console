@@ -6,5 +6,6 @@ namespace App\GitHash\Domain;
 
 interface GitHashResolverInterface
 {
-    public function resolve(GitHashRequest $gitHashRequest): GitHash;
+    public function getGitHash(string $repository, string $branch, string $service): string;
+
 }
