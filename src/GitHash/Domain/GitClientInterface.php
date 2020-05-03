@@ -6,5 +6,5 @@ namespace App\GitHash\Domain;
 
 interface GitClientInterface
 {
-    public function getBranchHash(string $url, string $repository, string $branch);
+    public function getBranchHash(string $domain, string $repository, string $branch): string;
 }

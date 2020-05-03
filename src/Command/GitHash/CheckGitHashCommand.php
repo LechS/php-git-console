@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\UI\Shell;
+namespace App\Command\GitHash;
 
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
@@ -11,10 +11,9 @@ use Symfony\Component\Process\Process;
 
 class CheckGitHashCommand extends Command
 {
-    // the name of the command (the part after "bin/console")
     protected static $defaultName = 'app:check-git-hash';
 
-    protected function configure()
+    protected function configure(): void
     {
         // ...
     }
@@ -30,8 +29,8 @@ class CheckGitHashCommand extends Command
 
             return 1;
         }
-
-        $output->write($process->getOutput());
+        $output->write($process->getCommandLine());
+        $output->write(PHP_EOL);
 
         return 0;
     }

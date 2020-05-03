@@ -1,7 +1,10 @@
 parameters:
 	ergebnis:
 		allowAbstractClasses: true
-		classesAllowedToBeExtended: []
+		classesAllowedToBeExtended: [
+		    Symfony\Component\Console\Command\Command,
+		    Exception
+		]
 		classesNotRequiredToBeAbstractOrFinal: []
 		interfacesImplementedByContainers:
 			- Psr\Container\ContainerInterface
