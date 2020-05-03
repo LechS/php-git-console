@@ -6,6 +6,7 @@ namespace App\Command\GitHash;
 
 use App\GitHash\Domain\GitClientException;
 use App\GitHash\Domain\GitHashResolverInterface;
+use App\GitHash\Domain\GitServiceNotFoundException;
 use App\GitHash\Infrastructure\GitServices;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
@@ -42,7 +43,7 @@ class CheckGitHashCommand extends Command
 
         try {
             $hash = $this->hashResolver->getGitHash($repository, $branch, $service);
-        } catch (ServiceNotFoundException $e) {
+        } catch (GitServiceNotFoundException $e) {
             $this->writelnError($output, $e->getMessage());
 
             return 1;
