@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\UI\Command;
+namespace App\UI\Shell;
 
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
