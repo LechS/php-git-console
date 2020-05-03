@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Command\GitHash;
 
 use App\GitHash\Domain\Exception\GitClientException;
-use App\GitHash\Domain\Execption\GitServiceNotFoundException;
+use App\GitHash\Domain\Exception\GitServiceNotFoundException;
 use App\GitHash\Domain\GitHashResolverInterface;
 use App\GitHash\Infrastructure\GitServices;
 use Symfony\Component\Console\Command\Command;
