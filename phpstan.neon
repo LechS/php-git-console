@@ -6,6 +6,7 @@ parameters:
 		- tests/*
 		- src/Kernel.php
 		- src/Command
+		- src/Shared
 	checkGenericClassInNonGenericObjectType: false
 	banned_code:
 			nodes:

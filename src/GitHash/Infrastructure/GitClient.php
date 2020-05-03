@@ -8,18 +8,26 @@ use App\GitHash\Domain\GitClientException;
 use App\GitHash\Domain\GitClientInterface;
 use App\GitHash\Domain\GitHash;
 use App\GitHash\Domain\GitHashRequest;
-use Symfony\Component\Process\Process;
+use App\Shared\ShellProcess\ShellProcessFactory;
+use App\Shared\ShellProcess\ShellProcessInterface;
 
 class GitClient implements GitClientInterface
 {
     const TAB = '	';
+
+    protected ShellProcessFactory $factory;
+
+    public function __construct(ShellProcessFactory $factory)
+    {
+        $this->factory = $factory;
+    }
 
     /**
      * {@inheritdoc}
      */
     public function getBranchHash(GitHashRequest $gitHashRequest): GitHash
     {
-        $process = new Process([
+        $process = $this->factory->create([
             'git',
             'ls-remote',
             'git://'.$gitHashRequest->getDomain().'/'.$gitHashRequest->getRepository().'.git',
@@ -36,10 +44,7 @@ class GitClient implements GitClientInterface
                 );
     }
 
-    /**
-     * @param Process|string[] $process
-     */
-    private function validate(Process $process, GitHashRequest $gitHashRequest): void
+    private function validate(ShellProcessInterface $process, GitHashRequest $gitHashRequest): void
     {
         if (!$process->isSuccessful() && false !== strpos($process->getErrorOutput(), 'Repository not found')) {
             throw new GitClientException('Repository not found');
