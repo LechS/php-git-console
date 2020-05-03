@@ -11,15 +11,19 @@ Wyjątkiem od zasad jest sama komenda konsolowa Symfony. Spowodowane jest to kom
 ## PROJECT setup
 ```
 git clone git@github.com:LechS/php-git-console.git
-docker-compose up -d
 cd php-git-console
+docker-compose up -d
+docker-compose exec php composer install
+docker-compose exec php vendor/bin/phpunit
 ```
 
 ## USAGE
 
 #### sprawdzenie hasha
-``docker-compose exec php bin/console app:check-git-hash LechS/php-git-console master``
-``docker-compose exec php bin/console app:check-git-hash LechS/php-git-console master --service github``
+```
+docker-compose exec php bin/console app:check-git-hash LechS/php-git-console master
+docker-compose exec php bin/console app:check-git-hash LechS/php-git-console master --service github
+```
 
 #### testy
 ``docker-compose exec php vendor/bin/phpunit``
