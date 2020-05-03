@@ -8,6 +8,8 @@ Na potrzeby realizacji zadania przyjęto, że aplikacja ma sprawdzać sha w publ
 git clone git@github.com:LechS/php-git-console.git
 cd php-git-console
 docker-compose up -d
+docker-compose exec php composer install
+docker-compose exec php vendor/bin/phpunit
 ```
 
 ## USAGE
