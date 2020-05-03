@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\GitHash\Infrastructure;
 
-use App\GitHash\Domain\GitServiceNotFoundException;
+use App\GitHash\Domain\Exception\GitServiceNotFoundException;
 use App\GitHash\Domain\GitServicesInterface;
 
 class GitServices implements GitServicesInterface

@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Tests\Core\Infrastructure;
 
-use App\GitHash\Domain\GitClientException;
+use App\GitHash\Domain\Exception\GitClientException;
 use App\GitHash\Domain\GitHashRequest;
 use App\GitHash\Infrastructure\GitClient;
 use App\Tests\Core\Doubles\ShellProcess\NoBranchProcessFactoryStub;

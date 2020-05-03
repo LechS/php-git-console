@@ -4,16 +4,15 @@ declare(strict_types=1);
 
 namespace App\Command\GitHash;
 
-use App\GitHash\Domain\GitClientException;
+use App\GitHash\Domain\Exception\GitClientException;
+use App\GitHash\Domain\Execption\GitServiceNotFoundException;
 use App\GitHash\Domain\GitHashResolverInterface;
-use App\GitHash\Domain\GitServiceNotFoundException;
 use App\GitHash\Infrastructure\GitServices;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
-use Symfony\Component\DependencyInjection\Exception\ServiceNotFoundException;
 
 class CheckGitHashCommand extends Command
 {

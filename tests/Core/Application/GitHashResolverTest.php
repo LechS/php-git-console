@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Tests\Core\Application;
 
 use App\GitHash\Application\GitHashResolver;
-use App\GitHash\Domain\GitServiceNotFoundException;
+use App\GitHash\Domain\Exception\GitServiceNotFoundException;
 use App\GitHash\Infrastructure\GitServices;
 use App\Tests\Core\Doubles\GitValidClientStub;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;

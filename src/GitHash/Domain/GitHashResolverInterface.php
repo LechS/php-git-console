@@ -4,6 +4,9 @@ declare(strict_types=1);
 
 namespace App\GitHash\Domain;
 
+use App\GitHash\Domain\Exception\GitClientException;
+use App\GitHash\Domain\Exception\GitServiceNotFoundException;
+
 interface GitHashResolverInterface
 {
     /**

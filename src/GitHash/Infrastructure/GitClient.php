@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\GitHash\Infrastructure;
 
-use App\GitHash\Domain\GitClientException;
+use App\GitHash\Domain\Exception\GitClientException;
 use App\GitHash\Domain\GitClientInterface;
 use App\GitHash\Domain\GitHash;
 use App\GitHash\Domain\GitHashRequest;
