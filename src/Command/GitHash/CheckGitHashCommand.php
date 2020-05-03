@@ -44,15 +44,12 @@ class CheckGitHashCommand extends Command
             $hash = $this->hashResolver->getGitHash($repository, $branch, $service);
         } catch (ServiceNotFoundException $e) {
             $this->writelnError($output, $e->getMessage());
-
             return 1;
         } catch (GitClientException $e) {
             $this->writelnError($output, $e->getMessage());
-
             return 1;
         } catch (\Throwable $e) {
-            $this->writelnError($output, $e->getMessage());
-
+            $this->writelnError($output, 'Unknown error :(');
             return 1;
         }
 
