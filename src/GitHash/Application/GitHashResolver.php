@@ -22,6 +22,9 @@ class GitHashResolver implements GitHashResolverInterface
         $this->gitServices = $gitServices;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function getGitHash(string $repository, string $branch, string $service): string
     {
         $hashRequest = new GitHashRequest(

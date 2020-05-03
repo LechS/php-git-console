@@ -12,7 +12,7 @@ use Symfony\Component\Process\Process;
 
 class GitClient implements GitClientInterface
 {
-    const SHELL_RESPONSE_SEPERATOR = '	';
+    const TAB = '	';
 
     /**
      * {@inheritdoc}
@@ -28,9 +28,7 @@ class GitClient implements GitClientInterface
 
         $process->run();
 
-        if (!$process->isSuccessful()) {
-            throw new GitClientException($this->parseErrorResponse($process->getErrorOutput()));
-        }
+        $this->validate($process, $gitHashRequest);
 
         return new GitHash(
                     $this->parseHashResponse($process->getOutput()),
@@ -38,9 +36,29 @@ class GitClient implements GitClientInterface
                 );
     }
 
+    /**
+     * @param Process|string[] $process
+     */
+    private function validate(Process $process, GitHashRequest $gitHashRequest): void
+    {
+        if (!$process->isSuccessful() && false !== strpos($process->getErrorOutput(), 'Repository not found')) {
+            throw new GitClientException('Repository not found');
+        }
+
+        if (!$process->isSuccessful()) {
+            throw new GitClientException($this->parseErrorResponse($process->getErrorOutput()));
+        }
+
+        $response = $process->getOutput();
+
+        if ('' === $response) {
+            throw new GitClientException('Branch "'.$gitHashRequest->getBranch().'" not found');
+        }
+    }
+
     private function parseHashResponse(string $response): string
     {
-        $separatorPosition = strpos($response, self::SHELL_RESPONSE_SEPERATOR);
+        $separatorPosition = strpos($response, self::TAB);
 
         if (!is_int($separatorPosition)) {
             throw new \Exception('Incorrect git has response, separator not found');
@@ -51,6 +69,6 @@ class GitClient implements GitClientInterface
 
     private function parseErrorResponse(string $response): string
     {
-        return str_replace(self::SHELL_RESPONSE_SEPERATOR, PHP_EOL, $response);
+        return str_replace(self::TAB, ' ', $response);
     }
 }
