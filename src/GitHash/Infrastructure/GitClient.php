@@ -8,16 +8,16 @@ use App\GitHash\Domain\GitClientException;
 use App\GitHash\Domain\GitClientInterface;
 use App\GitHash\Domain\GitHash;
 use App\GitHash\Domain\GitHashRequest;
-use App\Shared\ShellProcess\ShellProcessFactory;
+use App\Shared\ShellProcess\ShellProcessFactoryInterface;
 use App\Shared\ShellProcess\ShellProcessInterface;
 
 class GitClient implements GitClientInterface
 {
     const TAB = '	';
 
-    protected ShellProcessFactory $factory;
+    protected ShellProcessFactoryInterface $factory;
 
-    public function __construct(ShellProcessFactory $factory)
+    public function __construct(ShellProcessFactoryInterface $factory)
     {
         $this->factory = $factory;
     }
