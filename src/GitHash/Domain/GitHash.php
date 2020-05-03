@@ -33,4 +33,9 @@ class GitHash
     {
         return $this->dateTime;
     }
+
+    public function __toString(): string
+    {
+        return $this->getHash();
+    }
 }

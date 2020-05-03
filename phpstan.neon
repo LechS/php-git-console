@@ -5,6 +5,7 @@ parameters:
 	excludes_analyse:
 		- tests/*
 		- src/Kernel.php
+		- src/Command
 	checkGenericClassInNonGenericObjectType: false
 	banned_code:
 			nodes:

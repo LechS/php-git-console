@@ -22,9 +22,10 @@ class GitClient implements GitClientInterface
         $process = new Process([
             'git',
             'ls-remote',
-            'git://'.$gitHashRequest->getDomain().'/'.$gitHashRequest->getRepository().'git',
+            'git://'.$gitHashRequest->getDomain().'/'.$gitHashRequest->getRepository().'.git',
             $gitHashRequest->getBranch(),
         ]);
+
         $process->run();
 
         if (!$process->isSuccessful()) {
