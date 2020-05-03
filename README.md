@@ -3,6 +3,11 @@
 ## Założenia:
 Na potrzeby realizacji zadania przyjęto, że aplikacja ma sprawdzać sha w publicznych repozytoriach serwisów takich jak Github.
 
+## Architecture
+Aplikacja stworzona z wykorzystaniem podejścia domenowego i inspirowana "Clean architecture" 
+oraz podejściem framework agnostic.
+Wyjątkiem od zasad jest sama komenda konsolowa Symfony. Spowodowane jest to kompromisem między czasem wykonania a jakością. 
+
 ## PROJECT setup
 ```
 git clone git@github.com:LechS/php-git-console.git
