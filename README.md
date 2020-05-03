@@ -13,8 +13,8 @@ docker-compose up -d
 ## USAGE
 
 #### sprawdzenie hasha
-``docker-compose exec php bin/console app:check-git-hash LechS/php-git-console master``
-``docker-compose exec php bin/console app:check-git-hash LechS/php-git-console master --service github``
+```docker-compose exec php bin/console app:check-git-hash LechS/php-git-console master```
+```docker-compose exec php bin/console app:check-git-hash LechS/php-git-console master --service github```
 
 #### testy
 ``docker-compose exec php vendor/bin/phpunit``
