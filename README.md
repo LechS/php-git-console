@@ -5,8 +5,7 @@ Na potrzeby realizacji zadania przyjęto, że aplikacja ma sprawdzać sha w publ
 
 ## ARCHITECTURE
 Aplikacja stworzona z wykorzystaniem podejścia domenowego i inspirowana "Clean architecture" 
-oraz podejściem framework agnostic.
-Wyjątkiem od zasad jest sama komenda konsolowa Symfony. Spowodowane jest to kompromisem między czasem wykonania a jakością. 
+oraz podejściem framework agnostic. 
 
 ## PROJECT SETUP
 ```
